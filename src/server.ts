@@ -1,12 +1,22 @@
-const express = require("express");
+import bodyParser = require('body-parser');
+import express = require('express');
+import session = require('express-session');
 
 const app = express();
-const PORT = 8080;
 
-app.get("/", (req: any, res: any) => {
-    res.send("Hello world!");
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true
+}));
+
+app.get('/api', (req, res) => {
+  res.send('api test');
 });
 
-app.listen(PORT, () => {
-    console.log(`server started at http://localhost:${PORT}`);
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log('Server is up!');
 });

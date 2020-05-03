@@ -1,26 +1,38 @@
 {
   "name": "weather",
   "version": "1.0.0",
-  "description": "weather forecast service",
-  "main": "index.js",
+  "description": "weather service",
   "scripts": {
-    "start": "npm run serve",
-    "serve": "node dist/server.js",
-    "watch-node": "nodemon dist/server.js",
-    "build-ts": "tsc",
-    "watch-ts": "tsc -w",
-    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix"
+    "start": "node dist/server.js",
+    "dev-server": "nodemon --watch src/server --exec ts-node src/server.ts -p tsconfig-node.json",
+    "dev-client": "webpack-dev-server --mode=development",
+    "dev": "concurrently \"npm run dev-client\" \"npm run dev-server\"",
+    "build-client-prod": "webpack --mode=production"
   },
   "author": "Sviatoslav Nesteruk",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/express": "^4.17.6",
-    "@types/node": "^13.13.4",
-    "eslint": "^6.8.0",
-    "nodemon": "^2.0.3",
-    "typescript": "^3.8.3"
-  },
+  "license": "",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "typescript": "^3.2.2",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.16.0",
+    "@types/express-session": "^1.15.11",
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.9",
+    "ts-node": "^7.0.1",
+    "tsconfig-paths": "^3.7.0",
+    "tslint": "^5.12.1",
+    "tslint-react": "^3.6.0",
+    "@types/react": "^16.7.18",
+    "@types/react-dom": "^16.0.11",
+    "awesome-typescript-loader": "^5.2.1",
+    "source-map-loader": "^0.2.4",
+    "webpack-dev-server": "^3.1.14"
   }
 }
