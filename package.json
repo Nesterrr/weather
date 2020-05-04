@@ -4,7 +4,7 @@
   "description": "weather service",
   "scripts": {
     "start": "node dist/server.js",
-    "dev-server": "nodemon --watch src/server --exec ts-node src/server.ts -p tsconfig-node.json",
+    "dev-server": "nodemon --watch src/server --exec ts-node src/server/server.ts -p tsconfig-node.json",
     "dev-client": "webpack-dev-server --mode=development",
     "dev": "concurrently \"npm run dev-client\" \"npm run dev-server\"",
     "build-client-prod": "webpack --mode=production"
@@ -12,27 +12,30 @@
   "author": "Sviatoslav Nesteruk",
   "license": "",
   "dependencies": {
+    "axios": "^0.19.2",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
-    "typescript": "^3.2.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "typescript": "^3.2.2",
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1"
   },
   "devDependencies": {
+    "@types/errorhandler": "^1.5.0",
     "@types/express": "^4.16.0",
     "@types/express-session": "^1.15.11",
+    "@types/react": "^16.7.18",
+    "@types/react-dom": "^16.0.11",
+    "awesome-typescript-loader": "^5.2.1",
     "concurrently": "^4.1.0",
+    "errorhandler": "^1.5.1",
     "nodemon": "^1.18.9",
+    "source-map-loader": "^0.2.4",
     "ts-node": "^7.0.1",
     "tsconfig-paths": "^3.7.0",
     "tslint": "^5.12.1",
     "tslint-react": "^3.6.0",
-    "@types/react": "^16.7.18",
-    "@types/react-dom": "^16.0.11",
-    "awesome-typescript-loader": "^5.2.1",
-    "source-map-loader": "^0.2.4",
     "webpack-dev-server": "^3.1.14"
   }
 }
