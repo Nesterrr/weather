@@ -70,6 +70,25 @@ export const getFiveDayForecast = async (req: Request, res: Response, next: Next
     }
 }
 
+
+// export const getIcons = async (weatherStateAbbr: string[]) => {
+//     try {
+//         const urls = weatherStateAbbr.map((abbr) =>
+//             axios.get(`https://www.metaweather.com/static/img/weather/${abbr}.svg`));
+//         return (await axios
+//             .all(urls)
+//             .then(
+//                 axios.spread(
+//                     (...responses) => {
+//                         return responses.map(response => response.data)
+//                     }),
+//                 )
+//             );
+//     } catch (err) {
+//         console.log('TRY THIS: ', err);
+//     }
+// };
+
 export const getWeather = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const urlParts = url.parse(req.url, true);
@@ -95,3 +114,18 @@ export const getWeather = async (req: Request, res: Response, next: NextFunction
         next(err);
     }
 }
+
+// export const getStaticProxy = async (req: Request, res: Response, next: NextFunction) => {
+//     try {
+//         const abbr = req.params.icon;
+//         const { data, status } = await axios.get(`${API_URL}static/img/weather/${abbr}`);
+// 
+//         if (status === 200) {
+//             res.setHeader('Content-Type', 'image/svg+xml');
+//             res.send(data);
+//         }
+//         res.end();
+//     } catch (err) {
+//         console.log(err);
+//     }
+// }

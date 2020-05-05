@@ -10,3 +10,4 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/api/woeid", apiController.getWoeid);
 app.get("/api/location/", apiController.getFiveDayForecast);
 app.get("/api/weather", apiController.getWeather)
+// app.get("/api/static/:icon", apiController.getStaticProxy);

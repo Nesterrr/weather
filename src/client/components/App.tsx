@@ -11,7 +11,6 @@ import { WeatherForecast } from './WeatherForecast';
 import { Data } from '../types/weather';
 
 function getError(error: PositionError) {
-  console.dir(error);
   switch(error.code) {
     case error.PERMISSION_DENIED:
       return "User denied the request for Geolocation.";
