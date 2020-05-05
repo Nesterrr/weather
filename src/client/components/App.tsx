@@ -7,6 +7,8 @@ import
   }
 from 'react';
 import axios, { AxiosResponse } from 'axios';
+import { WeatherForecast } from './WeatherForecast';
+import { Data } from '../types/weather';
 
 function getError(error: PositionError) {
   console.dir(error);
@@ -37,7 +39,7 @@ const useWeatherFetch = (disabled: boolean) => {
   //   return { error: null, data: null };
   // }
   const { location, error } = useCurrentLocation(geolocationOptions);
-  const [data, setData] = useState<{ data: any }>();
+  const [data, setData] = useState<Data>();
 
   useEffect(() => {
     if (location) {
@@ -83,23 +85,20 @@ const useCurrentLocation = (options = {}) => {
   return { location, error };
 }
 
-export const App:FunctionComponent = () => {
-  // const [woeid, setWoeid] = useState<AxiosResponse<string> | undefined>();
-  // const [query, setQuery] = useState<string | undefined>(undefined);
 
+export const App:FunctionComponent = () => {
   const [disabled, toggle] = useState<boolean>(true);
 
   const { data, error } = useWeatherFetch(disabled);
-  console.log('data: ', data);
-  console.log('error: ', error);
+
+  if (!disabled && data) {
+    return <WeatherForecast data={data} /> 
+  }
   return (
     <div>
-      {/* <p>Result: {woeid ? JSON.stringify(woeid, null, '\t') : '----'}</p> */}
       <button onClick={() => toggle(!disabled)}>
         Fetch
       </button>
-      {/* <p>location: {location}</p> */}
-      {/* <p>Error: {JSON.stringify(error)}</p> */}
     </div>
   );
 }
