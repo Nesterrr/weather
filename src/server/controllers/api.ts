@@ -39,7 +39,8 @@ export const getWoeid = async (req: Request, res: Response, next: NextFunction) 
 
         if (response.status === 200) {
             const { data } = response;
-            res.send(data.woeid);
+            const woeid = data[0].woeid; 
+            res.send({ woeid });
             res.end();
         }
     } catch (err) {
