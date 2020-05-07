@@ -7,8 +7,21 @@ import
   }
 from 'react';
 import axios, { AxiosResponse } from 'axios';
-import { WeatherForecast } from './WeatherForecast';
-import { Data } from '../types/weather';
+import { WeatherForecast } from '../WeatherForecast/';
+import { Data } from '../../types/weather';
+import styled from 'styled-components';
+
+
+const ForecastButton = styled.button`
+  padding: 4px;
+  font-family: "Roboto";
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #0193cc;
+  border: 1px solid transparent;
+  border-radius: 4px;
+`;
 
 function getError(error: PositionError) {
   switch(error.code) {
@@ -33,10 +46,7 @@ type Coords = {
     longitude: number,
 }};
 
-const useWeatherFetch = (disabled: boolean) => {
-  // if (disabled) {
-  //   return { error: null, data: null };
-  // }
+const useWeatherFetch = () => {
   const { location, error } = useCurrentLocation(geolocationOptions);
   const [data, setData] = useState<Data>();
 
@@ -46,7 +56,6 @@ const useWeatherFetch = (disabled: boolean) => {
         const result: AxiosResponse<any> | void =
           await axios
             .get(`/api/weather?lattlong=${location}`)
-            .catch(err => console.log(err));
         if (result) {
           setData(result.data);
         }
@@ -54,12 +63,10 @@ const useWeatherFetch = (disabled: boolean) => {
       fetchData();
     }
   }, [location]);
-  // const fetchError = null;
-  const currentError = error; //  || fetchError;
 
   return {
     data,
-    error: currentError,
+    error,
   };
 }
 
@@ -88,16 +95,19 @@ const useCurrentLocation = (options = {}) => {
 export const App:FunctionComponent = () => {
   const [disabled, toggle] = useState<boolean>(true);
 
-  const { data, error } = useWeatherFetch(disabled);
+  const { data, error } = useWeatherFetch();
 
-  if (!disabled && data) {
+  if (error) {
+    return <div>{error}</div>
+  }
+
+  if (data) { // !disabled && 
     return <WeatherForecast data={data} /> 
   }
+
   return (
-    <div>
-      <button onClick={() => toggle(!disabled)}>
-        Fetch
-      </button>
-    </div>
+    <ForecastButton onClick={() => toggle(!disabled)}>
+      Get weather forecast
+    </ForecastButton>
   );
 }

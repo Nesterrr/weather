@@ -1,9 +1,15 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { App } from './components/App/';
+import styled from 'styled-components';
 
-import { App } from './components/App';
+const AppWrapper = styled.section`
+    font-family: "Roboto";
+`;
 
 ReactDOM.render(
-    <App />,
+    <AppWrapper>
+        <App />
+    </AppWrapper>,
     document.getElementById('app')
 );
