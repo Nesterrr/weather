@@ -13,10 +13,12 @@
   "license": "",
   "dependencies": {
     "axios": "^0.19.2",
+    "date-fns": "^2.13.0",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "styled-components": "^5.1.0",
     "typescript": "^3.2.2",
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1"
@@ -27,7 +29,9 @@
     "@types/express-session": "^1.15.11",
     "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.11",
+    "@types/styled-components": "^5.1.0",
     "awesome-typescript-loader": "^5.2.1",
+    "babel-plugin-styled-components": "^1.10.7",
     "concurrently": "^4.1.0",
     "errorhandler": "^1.5.1",
     "nodemon": "^1.18.9",
@@ -38,5 +42,8 @@
     "tslint-react": "^3.6.0",
     "tslint-react-hooks": "^2.2.2",
     "webpack-dev-server": "^3.1.14"
+  },
+  "resolutions": {
+    "@types/react-native": "link:./empty-package"
   }
 }
