@@ -12,7 +12,7 @@
   "author": "Sviatoslav Nesteruk",
   "license": "",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "date-fns": "^2.13.0",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
